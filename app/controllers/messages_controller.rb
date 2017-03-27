@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
 
 	def handle_messages
   puts "Handling Messages"
-  puts params
+  puts params.inspect
   payload = params
   # for sender, message in messaging_events(payload)
   #   puts sender 
