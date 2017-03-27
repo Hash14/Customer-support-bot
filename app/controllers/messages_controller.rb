@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 	
-	#@PAT = 'EAAUq9k26EawBAM6tjrM8JopgqpZBcOvkfjZBsAJawfa7UL7uYxmosTxIXDwh6untVLLw44glPMFZCXq2fjpd0UVEimv0ZAhz4TnFPLz9R2Et5IWswSjrc7Aw4pfrIwZAGum2teOXZB2Fkw3oFT7MYXZBt86KLahOtbNAZCzNDAKG7wZDZD'
+	PAT = 'EAAUq9k26EawBAM6tjrM8JopgqpZBcOvkfjZBsAJawfa7UL7uYxmosTxIXDwh6untVLLw44glPMFZCXq2fjpd0UVEimv0ZAhz4TnFPLz9R2Et5IWswSjrc7Aw4pfrIwZAGum2teOXZB2Fkw3oFT7MYXZBt86KLahOtbNAZCzNDAKG7wZDZD'
 
 	def handle_verification
   puts "Handling Verification."
@@ -17,7 +17,8 @@ class MessagesController < ApplicationController
 
 	def handle_messages
   puts "Handling Messages"
-  #payload = request.get_data()
+  puts params
+  payload = params
   # for sender, message in messaging_events(payload)
   #   puts sender 
   #   puts message
@@ -40,19 +41,19 @@ class MessagesController < ApplicationController
   #   end
   end
 
-	# def send_message(token, recipient, text)
- #  # """Send the message text to recipient with id recipient.
- #  # """
+	def send_message(token, recipient, text)
+  # """Send the message text to recipient with id recipient.
+  # """
 
- #  	r = requests.post("https://graph.facebook.com/v2.6/me/messages",
- #    params={"access_token": token},
- #    data=json.dumps({
- #      "recipient": {"id": recipient},
- #      "message": {"text": text.decode('unicode_escape')}
- #    }),
- #    headers={'Content-type': 'application/json'})
- #  	if r.status_code != requests.codes.ok
- #    	puts r.text
- #  	end
-	# end
+  	r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+    params={"access_token": token},
+    data=json.dumps({
+      "recipient": {"id": recipient},
+      "message": {"text": text.decode('unicode_escape')}
+    }),
+    headers={'Content-type': 'application/json'})
+  	if r.status_code != requests.codes.ok
+    	puts r.text
+  	end
+	end
 end
