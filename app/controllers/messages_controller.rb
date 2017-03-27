@@ -4,6 +4,8 @@ class MessagesController < ApplicationController
 
 	def handle_verification
   puts "Handling Verification."
+  puts params['hub.verify_token']
+  puts params['hub.challenge']
 	  if params['hub.verify_token'] == 'my_voice_is_my_password_verify_guru'
 	    puts "Verification successful!"
 	    return params['hub.challenge']
