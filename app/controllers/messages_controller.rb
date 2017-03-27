@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
 	  #   puts "Verification failed!"
 	  #   return 'Error, wrong validation token'
 	  # end
-	 	render json: {success: true}
+	 	render json: 822039787
 	end
 
 	def handle_messages
