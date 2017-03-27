@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
   puts "Handling Messages"
   puts params.inspect
   payload = params
+  render json: payload
   # for sender, message in messaging_events(payload)
   #   puts sender 
   #   puts message
