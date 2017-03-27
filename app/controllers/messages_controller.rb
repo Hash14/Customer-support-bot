@@ -4,15 +4,13 @@ class MessagesController < ApplicationController
 
 	def handle_verification
   puts "Handling Verification."
-  puts hub.verify_token
-	  # if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_guru'
-	  #   puts "Verification successful!"
-	  #   return request.args.get('hub.challenge', '')
-	  # else
-	  #   puts "Verification failed!"
-	  #   return 'Error, wrong validation token'
-	  # end
-	 	render json: 822039787
+	  if params[:hub][:verify_token] == 'my_voice_is_my_password_verify_guru'
+	    puts "Verification successful!"
+	    return params[:hub][:challenge]
+	  else
+	    puts "Verification failed!"
+	    return 'Error, wrong validation token'
+	  end
 	end
 
 	def handle_messages
