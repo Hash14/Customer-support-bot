@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   puts params['hub.challenge']
 	  if params['hub.verify_token'] == 'my_voice_is_my_password_verify_guru'
 	    puts "Verification successful!"
-	    render json: {'hub.challenge' = params['hub.challenge']}
+	    render json: {'hub.challenge' => params['hub.challenge']}
 	  else
 	    puts "Verification failed!"
 	    return 'Error, wrong validation token'
