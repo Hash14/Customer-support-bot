@@ -51,7 +51,7 @@ class MessagesController < ApplicationController
     params={"access_token": token},
     data=({
       "recipient": {"id": recipient},
-      "message": {"text": text.decode('unicode_escape')}
+      "message": {"text": text}
     }),
     headers={'Content-type': 'application/json'})
   	# if r.status_code != requests.codes.ok
