@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   payload = params
   send_message(PAT, params['sender'] , params['message'])
   render json: payload
-  data = JSON.parse(params)
+  data = params
   entries = data["entry"]
   entries.each do |entry|
     entry["messaging"].each do |messaging|
