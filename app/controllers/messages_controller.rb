@@ -49,7 +49,7 @@ class MessagesController < ApplicationController
   puts token
   	r = Net::HTTP::Post("https://graph.facebook.com/v2.6/gurusbot28/messages",
     params={"access_token": token},
-    data=json.dumps({
+    data=({
       "recipient": {"id": recipient},
       "message": {"text": text.decode('unicode_escape')}
     }),
