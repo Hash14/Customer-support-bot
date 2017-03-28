@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
   # """Send the message text to recipient with id recipient.
   # """
   puts token
-  	r = Net::HTTP::Post("https://graph.facebook.com/v2.6/gurusbot28/messages",
+  	r = http.post("https://graph.facebook.com/v2.6/gurusbot28/messages",
     params={"access_token": token},
     data=({
       "recipient": {"id": recipient},
