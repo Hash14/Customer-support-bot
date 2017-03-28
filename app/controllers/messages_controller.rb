@@ -19,10 +19,7 @@ class MessagesController < ApplicationController
   puts "Handling Messages"
   puts params.inspect
   payload = params
-  sender = params['sender']
-  puts "~"*100
-  puts sender
-  send_message(PAT, sender , message)
+  send_message(PAT, params['sender'] , params['message'])
   render json: payload
 
   # for sender, message in messaging_events(payload)
