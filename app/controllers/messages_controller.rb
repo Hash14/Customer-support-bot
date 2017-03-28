@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   puts "Handling Messages"
   puts params.inspect
   payload = params
-  sender = params.sender
+  sender = params['sender']
   message = params.message
   puts "~"*100
   puts sender
