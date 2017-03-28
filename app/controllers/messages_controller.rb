@@ -17,7 +17,6 @@ class MessagesController < ApplicationController
 
 	def handle_messages
   puts "Handling Messages"
-  puts params.inspect
   payload = params
   send_message(PAT, params['sender'] , params['message'])
   render json: payload
@@ -48,7 +47,7 @@ class MessagesController < ApplicationController
   # """Send the message text to recipient with id recipient.
   # """
   puts token
-  	r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+  	r = requests.post("https://graph.facebook.com/v2.6/gurusbot28/messages",
     params={"access_token": token},
     data=json.dumps({
       "recipient": {"id": recipient},
