@@ -50,8 +50,8 @@ class MessagesController < ApplicationController
   	r = Net::HTTP.post_form(uri,
     'params' => {"access_token": token},
     'data' => ({
-      "recipient" => {"id": recipient},
-      "message" => {"text": text}
+      "recipient" => {"id": "364082363992267"},
+      "message" => {"text": "hello! cool"}
     }), 'headers' => {'Content-type': 'application/json'})
     puts text.inspect
   	# if r.status_code != requests.codes.ok
