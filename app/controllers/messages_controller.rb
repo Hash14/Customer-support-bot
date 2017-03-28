@@ -56,7 +56,6 @@ class MessagesController < ApplicationController
       "message" => {"text": text.to_s}
     }), 'headers' => {'Content-type': 'application/json'})
     puts text.inspect
-    render json: text
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
