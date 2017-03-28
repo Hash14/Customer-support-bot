@@ -47,12 +47,12 @@ class MessagesController < ApplicationController
   # """Send the message text to recipient with id recipient.
   # """
   	r = Net::HTTP.post_form("https://graph.facebook.com/v2.6/gurusbot28/messages",
-    params= {{"access_token": token},
+    params={"access_token": token},
     data=({
       "recipient": {"id": recipient},
-      "message": {"text": text}
+      "message": {"text": text.message}
     }),
-    headers={'Content-type': 'application/json'})}
+    headers={'Content-type': 'application/json'})
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
