@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
   payload = params
   sender = params.sender
   message = params.message
+  puts "~"*100
   puts sender
   puts message
   send_message(PAT, sender , message)
