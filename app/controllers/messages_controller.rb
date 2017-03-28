@@ -53,7 +53,7 @@ class MessagesController < ApplicationController
     'params' => {"access_token": token},
     'data' => ({
       "recipient" => {"id": "364082363992267"},
-      "message" => {"text": text.decode('unicode_escape')}
+      "message" => {"text": text.to_s}
     }), 'headers' => {'Content-type': 'application/json'})
     puts text.inspect
   	# if r.status_code != requests.codes.ok
