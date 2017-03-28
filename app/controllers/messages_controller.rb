@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    req = Net::HTTP::Post.new('https://graph.facebook.com/v2.8/me/webhook')
+    req = Net::HTTP::Post.new('https://graph.facebook.com/v2.8/gurusbot28/messages')
     req.content_type = 'application/json'       
     data = URI.encode_www_form("params" => {"access_token": token},"data" => ({"recipient" => {"id": recipient}, "message" => {"text": text}}))
     req.body = data
