@@ -48,9 +48,8 @@ class MessagesController < ApplicationController
   # """
 
     text = "hello"
-    uri = URI('https://graph.facebook.com/v2.8/me/messages')
+    uri = URI('https://graph.facebook.com/v2.8/me/messages?access_token='+token)
   	r = Net::HTTP.post_form(uri,
-    'params' => {"access_token": token},
     'data' => ({
       "recipient" => {"id": "1482683801743665"},
       "message" => {"text": text.to_s}
