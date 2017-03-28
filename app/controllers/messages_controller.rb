@@ -18,16 +18,14 @@ class MessagesController < ApplicationController
 	def handle_messages
   puts "Handling Messages"
   payload = params
-  send_message(PAT, params['sender'] , params['message'])
-  render json: payload
   data = params
   entries = data["entry"]
   entries.each do |entry|
     entry["messaging"].each do |messaging|
       sender_id = messaging["sender"]["id"]
       text = messaging["message"]["text"]
-      puts text
       reply = "You said: #{text}"
+      send_message(PAT, sender_id , text)
     end
   end
   # for sender, message in messaging_events(payload)
@@ -61,10 +59,9 @@ class MessagesController < ApplicationController
   	r = Net::HTTP.post_form(uri,
     'params' => {"access_token": token},
     'data' => ({
-      "recipient" => {"id": "1482683801743665"},
-      "message" => {"text": text.to_s}
+      "recipient" => {"id": recipient},
+      "message" => {"text": text}
     }), 'headers' => {'Content-type': 'application/json'})
-    puts text.inspect
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
