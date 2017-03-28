@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
   message = params.message
   puts sender
   puts message
-  send_message (PAT, sender , message)
+  send_message(PAT, sender , message)
   render json: payload
 
   # for sender, message in messaging_events(payload)
