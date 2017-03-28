@@ -55,7 +55,7 @@ class MessagesController < ApplicationController
   # """
 
     text = "hello"
-    uri = URI('https://graph.facebook.com/v2.8/me/messages?access_token=' + ENV['PAGE_ACCESS_TOKEN'])
+    uri = URI('https://graph.facebook.com/v2.8/me/messages?access_token='+PAT)
     data = {recipient: {id: recipient}, message: {text: text}}
     HTTP.post(uri, json: data)
   	# r = Net::HTTP.post_form(uri,
