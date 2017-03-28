@@ -53,14 +53,24 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-    uri = URI('https://graph.facebook.com/v2.8/me/messages?')
-  	r = Net::HTTP.post_form(uri,
-    "params" => {"access_token": token},
-    "data" => ({
-      "recipient" => {"id": recipient},
-      "message" => {"text": text}
-    }), "headers" => {'Content-type': 'application/json'})
-    puts r.inspect
+    uri = URI.parse('https://graph.facebook.com/v2.8/me/messages?')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    req = Net::HTTP::Post.new('https://graph.facebook.com/v2.8/me/messages?')
+    req.content_type = 'application/json'       
+    data = URI.encode_www_form("params" => {"access_token": token},"data" => ({"recipient" => {"id": recipient}, "message" => {"text": text}}))
+    req.body = data
+    response = http.request(req)
+
+   #  uri = URI('https://graph.facebook.com/v2.8/me/messages?')
+  	# r = Net::HTTP.post_form(uri,
+   #  "params" => {"access_token": token},
+   #  "data" => ({
+   #    "recipient" => {"id": recipient},
+   #    "message" => {"text": text}
+   #  }), "headers" => {'Content-type': 'application/json'})
+   #  puts r.inspect
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
