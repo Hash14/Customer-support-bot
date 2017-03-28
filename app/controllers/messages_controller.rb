@@ -53,11 +53,11 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-    uri = URI.parse('https://graph.facebook.com/v2.8/me')
+    uri = URI.parse('https://graph.facebook.com/v2.8/me/messages')
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    req = Net::HTTP::Post.new('https://graph.facebook.com/v2.8/gurusbot28/messages')
+    req = Net::HTTP::Post.new('https://graph.facebook.com/v2.8/me/messages')
     req.content_type = 'application/json'       
     data = URI.encode_www_form("params" => {"access_token": token},"data" => ({"recipient" => {"id": recipient}, "message" => {"text": text}}))
     req.body = data
@@ -70,7 +70,7 @@ class MessagesController < ApplicationController
    #    "recipient" => {"id": recipient},
    #    "message" => {"text": text}
    #  }), "headers" => {'Content-type': 'application/json'})
-     puts response.text
+     puts response.inspect
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
