@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
   #   puts sender 
   #   puts message
   #   send_message(PAT, sender, message)
-  # return "ok"
+   return "ok"
 	end
 
 
