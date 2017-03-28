@@ -18,14 +18,14 @@ class MessagesController < ApplicationController
 	def handle_messages
   puts "Handling Messages"
   payload = params
-  #send_message(PAT, params['sender'] , params['message'])
-  
+  send_message(PAT, params['sender'] , params['message'])
+  render json: payload
 
-  for sender, message in messaging_events(payload)
-    puts sender 
-    puts message
-    send_message(PAT, sender, message)
-  return "ok"
+  # for sender, message in messaging_events(payload)
+  #   puts sender 
+  #   puts message
+  #   send_message(PAT, sender, message)
+  # return "ok"
 	end
 
 
