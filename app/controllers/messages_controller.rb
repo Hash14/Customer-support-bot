@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
 	def handle_messages
   puts "Handling Messages"
   payload = params
-  puts params['sender']['id']
+  puts params['sender']
   send_message(PAT, params['sender']['id'] , params['message'])
   render json: payload
 
