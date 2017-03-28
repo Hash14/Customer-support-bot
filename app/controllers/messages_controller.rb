@@ -32,8 +32,8 @@ class MessagesController < ApplicationController
   #   puts sender 
   #   puts message
   #   send_message(PAT, sender, message)
-   return "ok"
-	end
+	render json: {success: true}
+  end
 
 
   def messaging_events(payload)
