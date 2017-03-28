@@ -20,7 +20,16 @@ class MessagesController < ApplicationController
   payload = params
   send_message(PAT, params['sender'] , params['message'])
   render json: payload
-
+  data = JSON.parse(params)
+  entries = data["entry"]
+  entries.each do |entry|
+    entry["messaging"].each do |messaging|
+      sender_id = messaging["sender"]["id"]
+      text = messaging["message"]["text"]
+      puts sender_id
+      reply = "You said: #{text}"
+    end
+  end
   # for sender, message in messaging_events(payload)
   #   puts sender 
   #   puts message
@@ -48,8 +57,9 @@ class MessagesController < ApplicationController
   # """
 
     text = "hello"
-    uri = URI('https://graph.facebook.com/v2.8/me/messages?access_token='+token)
+    uri = URI('https://graph.facebook.com/v2.8/me/messages')
   	r = Net::HTTP.post_form(uri,
+    'params' => {"access_token": token},
     'data' => ({
       "recipient" => {"id": "1482683801743665"},
       "message" => {"text": text.to_s}
