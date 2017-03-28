@@ -50,7 +50,7 @@ class MessagesController < ApplicationController
   	r = Net::HTTP.post_form(uri,
     'params' => {"access_token": token},
     'data' => ({
-      "recipient" => {"id": 364082363992267},
+      "recipient" => {"id": "364082363992267"},
       "message" => {"text": "hello"}
     }), 'headers' => {'Content-type': 'application/json'})
     puts text.inspect
