@@ -20,10 +20,8 @@ class MessagesController < ApplicationController
   puts params.inspect
   payload = params
   sender = params['sender']
-  message = params.message
   puts "~"*100
   puts sender
-  puts message
   send_message(PAT, sender , message)
   render json: payload
 
@@ -52,7 +50,7 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-
+  puts token
   	r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": token},
     data=json.dumps({
