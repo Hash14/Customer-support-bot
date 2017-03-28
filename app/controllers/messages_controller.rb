@@ -46,12 +46,14 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
+
+    text = "hello world"
     uri = URI('https://graph.facebook.com/v2.8/me/messages')
   	r = Net::HTTP.post_form(uri,
     'params' => {"access_token": token},
     'data' => ({
       "recipient" => {"id": "364082363992267"},
-      "message" => {"text": "hello! cool"}
+      "message" => {"text": text.decode('unicode_escape')}
     }), 'headers' => {'Content-type': 'application/json'})
     puts text.inspect
   	# if r.status_code != requests.codes.ok
