@@ -54,7 +54,7 @@ class MessagesController < ApplicationController
   # """Send the message text to recipient with id recipient.
   # """
     uri = URI('https://graph.facebook.com/v2.8/me/messages?')
-  	r = Net::HTTP.post_form(uri,{
+  	r = Net::HTTP::Post.new(uri,{
     "params" => {"access_token": token},
     "data" => ({
       "recipient" => {"id": recipient},
