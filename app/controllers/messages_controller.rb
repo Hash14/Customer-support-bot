@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 	
-	PAT = 'EAAUq9k26EawBAM6tjrM8JopgqpZBcOvkfjZBsAJawfa7UL7uYxmosTxIXDwh6untVLLw44glPMFZCXq2fjpd0UVEimv0ZAhz4TnFPLz9R2Et5IWswSjrc7Aw4pfrIwZAGum2teOXZB2Fkw3oFT7MYXZBt86KLahOtbNAZCzNDAKG7wZDZD'
+	PAT = 'EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD'
 
 	def handle_verification
   puts "Handling Verification."
@@ -19,7 +19,13 @@ class MessagesController < ApplicationController
   puts "Handling Messages"
   puts params.inspect
   payload = params
+  sender = params.sender
+  message = params.message
+  puts sender
+  puts message
+  send_message (PAT, sender , message)
   render json: payload
+
   # for sender, message in messaging_events(payload)
   #   puts sender 
   #   puts message
