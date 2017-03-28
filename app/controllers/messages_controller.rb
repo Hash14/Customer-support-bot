@@ -70,7 +70,7 @@ class MessagesController < ApplicationController
    #    "recipient" => {"id": recipient},
    #    "message" => {"text": text}
    #  }), "headers" => {'Content-type': 'application/json'})
-   #  puts r.inspect
+     puts response
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
