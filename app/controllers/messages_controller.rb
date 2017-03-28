@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
     entry["messaging"].each do |messaging|
       sender_id = messaging["sender"]["id"]
       text = messaging["message"]["text"]
-      puts sender_id
+      puts text
       reply = "You said: #{text}"
     end
   end
