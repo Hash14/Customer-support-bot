@@ -28,13 +28,13 @@ class MessagesController < ApplicationController
       send_message(PAT, sender_id , text)
     end
   end
+  render json: {success: true}
   # for sender, message in messaging_events(payload)
   #   puts sender 
   #   puts message
   #   send_message(PAT, sender, message)
   # return "ok"
 	end
-
 
   def messaging_events(payload)
   # """Generate tuples of (sender_id, message_text) from the
@@ -55,13 +55,15 @@ class MessagesController < ApplicationController
   # """
 
     text = "hello"
-    uri = URI('https://graph.facebook.com/v2.8/me/messages')
-  	r = Net::HTTP.post_form(uri,
-    'params' => {"access_token": token},
-    'data' => ({
-      "recipient" => {"id": recipient},
-      "message" => {"text": text}
-    }), 'headers' => {'Content-type': 'application/json'})
+    uri = URI('https://graph.facebook.com/v2.8/me/messages?access_token=' + ENV['PAGE_ACCESS_TOKEN'])
+    data = {recipient: {id: recipient}, message: {text: text}}
+    HTTP.post(uri, json: data)
+  	# r = Net::HTTP.post_form(uri,
+   #  'params' => {"access_token": token},
+   #  'data' => ({
+   #    "recipient" => {"id": recipient},
+   #    "message" => {"text": text}
+   #  }), 'headers' => {'Content-type': 'application/json'})
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
