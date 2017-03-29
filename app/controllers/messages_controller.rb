@@ -55,12 +55,11 @@ class MessagesController < ApplicationController
      message: {
        text: reply
      },
-     {
     attachment:{
       title: "test",
       url: "https://facebook.com/",
       type: "fallback",
-      payload: null
+      "payload": null
     }
     }.to_json
     response = HTTParty.post(
