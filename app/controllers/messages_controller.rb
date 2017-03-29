@@ -32,15 +32,15 @@ class MessagesController < ApplicationController
   about = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
   support = ["support" , "talk", "support", "live"]
   bye = ["bye" , "thanks", "thank you"]
-    if text.downcase.include?(job)
+    if job.include? text.downcase 
       reply = "send your resume to magesh@hash14.com"
-    elsif text.downcase.include?(about)
+    elsif about.include? text.downcase
       reply = "can you details to sales@hash14.com"
-    elsif text.downcase.include?(support)
+    elsif support.include? text.downcase 
       reply = "can you give as ur name and phone no"
-    elsif text.downcase.include?(welcome) 
+    elsif welcome.include? text.downcase  
       reply = "hey, how can i help you ?"
-    elsif text.downcase.include?(bye)
+    elsif bye.include? text.downcase 
       reply = "bye, have a nice day"
     else
       reply = "sorry i can't understand you :-(" 
