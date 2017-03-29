@@ -27,20 +27,20 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-  welcome = {"hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" }
-  job = {"job", "opening" , "vacancy" , "vacancies", "jobs"}
-  about = {"product", "project", "app", "mobile", "idea", "ruby", "rails"}
-  support = {"support" , "talk", "support", "live"}
-  bye = {"bye" , "thanks", "thank you"}
-    if text.downcase job
+  welcome = ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ]
+  job = ["job", "opening" , "vacancy" , "vacancies", "jobs"]
+  about = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
+  support = ["support" , "talk", "support", "live"]
+  bye = ["bye" , "thanks", "thank you"]
+    if text.downcase.include?(job)
       reply = "send your resume to magesh@hash14.com"
-    elsif text.downcase.include? about
+    elsif text.downcase.include?(about)
       reply = "can you details to sales@hash14.com"
-    elsif text.downcase.include? support
+    elsif text.downcase.include?(support)
       reply = "can you give as ur name and phone no"
-    elsif text.downcase.include? welcome 
+    elsif text.downcase.include?(welcome) 
       reply = "hey, how can i help you ?"
-    elsif text.downcase.include? bye
+    elsif text.downcase.include?(bye)
       reply = "bye, have a nice day"
     else
       reply = "sorry i can't understand you :-(" 
