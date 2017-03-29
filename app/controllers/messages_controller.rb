@@ -27,20 +27,20 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-  welcome = ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ]
+  welcomes = ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ]
   jobs = ["job", "opening" , "vacancy" , "vacancies", "jobs"]
-  about = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
-  support = ["support" , "talk", "support", "live"]
-  bye = ["bye" , "thanks", "thank you"]
+  abouts = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
+  supports = ["support" , "talk", "support", "live"]
+  byes = ["bye" , "thanks", "thank you"]
     if jobs.any? { |job| text.downcase.include?(job) }
       reply = "send your resume to magesh@hash14.com"
-    elsif about.include? text.downcase
+    elsif abouts.any? { |about| text.downcase.include?(about) }
       reply = "can you details to sales@hash14.com"
-    elsif support.include? text.downcase 
+    elsif supports.any? { |support| text.downcase.include?(support) } 
       reply = "can you give as ur name and phone no"
-    elsif welcome.include? text.downcase  
+    elsif welcomes.any? { |welcome| text.downcase.include?(welcome) }
       reply = "hey, how can i help you ?"
-    elsif bye.include? text.downcase 
+    elsif byes.any? { |bye| text.downcase.include?(bye) }
       reply = "bye, have a nice day"
     else
       reply = "sorry i can't understand you :-(" 
