@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
       abouts: ["product", "project", "app", "mobile", "idea", "ruby", "rails"],
       supports: ["support" , "talk", "support", "live"],
       welcomes: ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
-      company: ["about", "hash14" , "you", "company"],
+      company: ["about", "hash14" , "company"],
       byes: ["bye" , "thanks", "thank you"],
       numbers: ["1","2","3","4","5","6","7","8","9","0"]
     }
@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
   def send_message(recipient, text)
     keywords = query_keywords
     responses = query_responses
-    reply = text
+    reply = nil
 
     keywords.each do |keyword_hash|
       if check_values_in_array(keyword_hash, text)
