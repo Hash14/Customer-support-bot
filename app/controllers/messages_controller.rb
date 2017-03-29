@@ -63,12 +63,12 @@ class MessagesController < ApplicationController
     # req.body = data
     # response = http.request(req)
 
-    uri = URI('https://m.me/gurusbot28')
+    uri = URI('https://graph.facebook.com/v2.6/me/messages')
   	r = Net::HTTP.post_form(uri,
     "params" => {"access_token": token},
     "data" => ({
-      "recipient" => {"id": recipient},
-      "message" => {"text": text}
+      recipient: {"id": recipient},
+      message: {"text": text}
     }), "headers" => {'Content-type': 'application/json'})
      puts r.inspect
   	# if r.status_code != requests.codes.ok
