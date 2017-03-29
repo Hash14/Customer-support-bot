@@ -53,19 +53,19 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = ({
-        "recipient": {
-            "id": recipient
-        },
-        "message": {
-            "text": text
-        }
-    }).to_json
-    uri = URI('https://graph.facebook.com/v2.6/me/messages?access_token=EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD')
-  	r = Net::HTTP.post_form(uri, data)
+    body = {
+     recipient: {
+       id: sender
+     },
+     message: {
+       text: text
+     }
+    }.to_json
+    response = HTTParty.post(
+     'https://graph.facebook.com/v2.6/me/messages?access_token={page_access_token}',
+     body: body,
+     headers: { 'Content-Type' => 'application/json' }
+    )
      puts r.inspect
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
