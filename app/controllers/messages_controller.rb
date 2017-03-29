@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     render json: {success: true}
   end
 
-	def send_message
+	def send_message(response, text)
     keywords = {
       welcomes: ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
       jobs: ["job", "opening" , "vacancy" , "vacancies", "jobs"],
