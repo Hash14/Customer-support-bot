@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
   about = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
   support = ["support" , "talk", "support", "live"]
   bye = ["bye" , "thanks", "thank you"]
-    if jobs.any? { |job| text.downcase.includes?(job) }
+    if jobs.any? { |job| text.downcase.include?(job) }
       reply = "send your resume to magesh@hash14.com"
     elsif about.include? text.downcase
       reply = "can you details to sales@hash14.com"
