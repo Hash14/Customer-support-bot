@@ -24,13 +24,6 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-    welcomes = ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
-    jobs = ["job", "opening" , "vacancy" , "vacancies", "jobs"],
-    abouts = ["product", "project", "app", "mobile", "idea", "ruby", "rails"],
-    supports = ["support" , "talk", "support", "live"],
-    company = ["about", "hash14" , "you", "company"],
-    byes = ["bye" , "thanks", "thank you"],
-    numbers = ["1","2","3","4","5","6","7","8","9","0"]
   keywords = {
     welcomes: ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
     jobs: ["job", "opening" , "vacancy" , "vacancies", "jobs"],
@@ -41,41 +34,41 @@ class MessagesController < ApplicationController
     numbers: ["1","2","3","4","5","6","7","8","9","0"]
   }
 
-  # responses = {
-  #   jobs: "send your resume to magesh@hash14.com",
-  #   abouts: "can you send details to sales@hash14.com",
-  #   supports: "can you give as ur name and phone no",
-  #   welcomes: "hey, how can i help you ?",
-  #   byes: "bye, have a nice day",
-  #   company: "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com",
-  #   numbers: "Thankyou , we will get back to you soon",
-  # }
+  responses = {
+    jobs: "send your resume to magesh@hash14.com",
+    abouts: "can you send details to sales@hash14.com",
+    supports: "can you give as ur name and phone no",
+    welcomes: "hey, how can i help you ?",
+    byes: "bye, have a nice day",
+    company: "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com",
+    numbers: "Thankyou , we will get back to you soon",
+  }
 
-  # keywords.each do |keyword_hash|
-  #   if check_values_in_array(keyword_hash, text)
-  #     reply = responses[keyword_hash.first.to_sym]
-  #     return reply
-  #   end
-  # end
-    #if check_values_in_array(jobs, text)
+  reply = text
 
-    if jobs.any? { |job| text.downcase.include?(job)}
-      reply = "send your resume to magesh@hash14.com"
-    elsif abouts.any? { |about| text.downcase.include?(about) }
-      reply = "can you send details to sales@hash14.com"
-    elsif supports.any? { |support| text.downcase.include?(support) } 
-      reply = "can you give as ur name and phone no"
-    elsif welcomes.any? { |welcome| text.downcase.include?(welcome) }
-      reply = "hey, how can i help you ?"
-    elsif byes.any? { |bye| text.downcase.include?(bye) }
-      reply = "bye, have a nice day"
-    elsif company.any? {|comp| text.downcase.include?(comp)}
-      reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com"  
-    elsif numbers.any? {|number| text.downcase.include?(number)} 
-      reply = "Thankyou , we will get back to you soon"
-    else
-      reply = "sorry i can't understand you :-(" 
+  keywords.each do |keyword_hash|
+    if check_values_in_array(keyword_hash, text)
+      reply = responses[keyword_hash.first]
+      return reply
     end
+  end
+    # if check_values_in_array(jobs, text)
+    #   reply = "send your resume to magesh@hash14.com"
+    # elsif abouts.any? { |about| text.downcase.include?(about) }
+    #   reply = "can you send details to sales@hash14.com"
+    # elsif supports.any? { |support| text.downcase.include?(support) } 
+    #   reply = "can you give as ur name and phone no"
+    # elsif welcomes.any? { |welcome| text.downcase.include?(welcome) }
+    #   reply = "hey, how can i help you ?"
+    # elsif byes.any? { |bye| text.downcase.include?(bye) }
+    #   reply = "bye, have a nice day"
+    # elsif company.any? {|comp| text.downcase.include?(comp)}
+    #   reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com"  
+    # elsif numbers.any? {|number| text.downcase.include?(number)} 
+    #   reply = "Thankyou , we will get back to you soon"
+    # else
+    #   reply = "sorry i can't understand you :-(" 
+    # end
     body = {
      recipient: {
        id: recipient
