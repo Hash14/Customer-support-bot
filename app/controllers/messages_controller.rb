@@ -44,6 +44,8 @@ class MessagesController < ApplicationController
     numbers: "Thankyou , we will get back to you soon",
   }
 
+  reply = text
+
   keywords.each do |keyword_hash|
     if check_values_in_array(keyword_hash, text)
       reply = responses[keyword_hash.first.to_sym]
