@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   end
 
   def query_keywords
-      { 
+    { 
       jobs: ["job", "opening" , "vacancy" , "vacancies", "jobs"],
       abouts: ["product", "project", "app", "mobile", "idea", "ruby", "rails"],
       supports: ["support" , "talk", "support", "live"],
