@@ -27,12 +27,12 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-  welcome = ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ]
-  job = ["job", "opening" , "vacancy" , "vacancies", "jobs"]
-  about = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
-  support = ["support" , "talk", "support", "live"]
-  bye = ["bye" , "thanks", "thank you"]
-    if text.downcase.include? job
+  welcome = {"hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" }
+  job = {"job", "opening" , "vacancy" , "vacancies", "jobs"}
+  about = {"product", "project", "app", "mobile", "idea", "ruby", "rails"}
+  support = {"support" , "talk", "support", "live"}
+  bye = {"bye" , "thanks", "thank you"}
+    if text.downcase job
       reply = "send your resume to magesh@hash14.com"
     elsif text.downcase.include? about
       reply = "can you details to sales@hash14.com"
