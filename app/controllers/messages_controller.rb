@@ -55,14 +55,14 @@ class MessagesController < ApplicationController
   # """
     body = {
      recipient: {
-       id: sender
+       id: recipient
      },
      message: {
        text: text
      }
     }.to_json
     response = HTTParty.post(
-     'https://graph.facebook.com/v2.6/me/messages?access_token={token}',
+     'https://graph.facebook.com/v2.6/me/messages?access_token=EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD',
      body: body,
      headers: { 'Content-Type' => 'application/json' }
     )
