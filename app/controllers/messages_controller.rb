@@ -53,29 +53,29 @@ class MessagesController < ApplicationController
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
-    # uri = URI.parse('https://graph.facebook.com/v2.8/me/messages')
-    # http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
-    # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    # req = Net::HTTP::Post.new('https://graph.facebook.com/v2.8/me/messages')
-    # req.content_type = 'application/json'       
-    # data = URI.encode_www_form("params" => {"access_token": token},"data" => ({"recipient" => {"id": recipient}, "message" => {"text": text}}))
-    # req.body = data
-    # response = http.request(req)
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = ({
-        "recipient": {
-            "id": recipient
-        },
-        "message": {
-            "text": text
-        }
-    }).to_json
-    uri = URI('https://graph.facebook.com/v2.6/me/messages?access_token=EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD')
-  	r = Net::HTTP.post_form(uri, "data": data)
-     puts r.inspect
+    Bot.deliver({
+  recipient: {
+    id: recipient
+  },
+  message: {
+    text: 'Human?'
+  }
+}, access_token: token)
+
+   #  headers = {
+   #      "Content-Type": "application/json"
+   #  }
+   #  data = ({
+   #      "recipient": {
+   #          "id": recipient
+   #      },
+   #      "message": {
+   #          "text": text
+   #      }
+   #  }).to_json
+   #  uri = URI('https://graph.facebook.com/v2.6/me/messages?access_token=EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD')
+  	# r = Net::HTTP.post_form(uri, "data": data)
+   #   puts r.inspect
   	# if r.status_code != requests.codes.ok
    #  	puts r.text
   	# end
