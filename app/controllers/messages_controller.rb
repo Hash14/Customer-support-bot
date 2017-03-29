@@ -19,8 +19,8 @@ class MessagesController < ApplicationController
     render json: {success: true}
   end
 
-	def send_message(recipient, text)
-    keywords = { 
+  def query_keywords
+      { 
       jobs: ["job", "opening" , "vacancy" , "vacancies", "jobs"],
       abouts: ["product", "project", "app", "mobile", "idea", "ruby", "rails"],
       supports: ["support" , "talk", "support", "live"],
@@ -29,8 +29,10 @@ class MessagesController < ApplicationController
       byes: ["bye" , "thanks", "thank you"],
       numbers: ["1","2","3","4","5","6","7","8","9","0"]
     }
-
-    responses = {
+  end
+  
+  def query_responses
+    {
       jobs: "send your resume to magesh@hash14.com",
       abouts: "can you send details to sales@hash14.com",
       supports: "can you give as ur name and phone no",
@@ -39,13 +41,16 @@ class MessagesController < ApplicationController
       company: "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com",
       numbers: "Thankyou , we will get back to you soon",
     }
-
+  end
+	
+  def send_message(recipient, text)
+    keywords = query_keywords
+    responses = query_responses
     reply = text
 
     keywords.each do |keyword_hash|
       if check_values_in_array(keyword_hash, text)
         reply = responses[keyword_hash.first]
-        puts reply
         break
       end
     end
