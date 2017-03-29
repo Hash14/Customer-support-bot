@@ -72,7 +72,7 @@ class MessagesController < ApplicationController
        id: recipient
      },
      message: {
-       text: (reply.present? ? reply : "sorry i can't understand you :-(")
+       text: reply
      }
     }.to_json
     response = HTTParty.post(
