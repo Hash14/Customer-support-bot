@@ -49,6 +49,7 @@ class MessagesController < ApplicationController
   keywords.each do |keyword_hash|
     if check_values_in_array(keyword_hash, text)
       reply = responses[keyword_hash.first]
+      puts reply
       return reply
     end
   end
