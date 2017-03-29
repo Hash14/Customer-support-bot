@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
     elsif byes.any? { |bye| text.downcase.include?(bye) }
       reply = "bye, have a nice day"
     elsif company.any? {|comp| text.downcase.include?(comp)}
-      reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level.We specialize in Ruby based web development. With more than six years of experience in this industry we are confident that we can improve your productivity and consequently, your profitability. Our clients come to us for repeat work because they value our work and our reliability as a service provider. vist http://www.hash14.com"  
+      reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com"  
     elsif numbers.any? {|number| text.downcase.include?(number)} 
       reply = "Thankyou , we will get back to you soon"
     else
