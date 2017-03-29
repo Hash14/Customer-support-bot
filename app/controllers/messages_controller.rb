@@ -59,7 +59,7 @@ class MessagesController < ApplicationController
       title: "test",
       url: "https://facebook.com/",
       type: "fallback",
-      "payload": null
+      payload: null
     }
     }.to_json
     response = HTTParty.post(
