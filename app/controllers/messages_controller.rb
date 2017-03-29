@@ -1,14 +1,14 @@
 class MessagesController < ApplicationController
 
-	def handle_verification
-	  if params['hub.verify_token'] == 'my_voice_is_my_password_verify_guru'
-	    render json: params['hub.challenge']
-	  else
-	    return 'Error, wrong validation token'
-	  end
-	end
+  def handle_verification
+    if params['hub.verify_token'] == 'my_voice_is_my_password_verify_guru'
+      render json: params['hub.challenge']
+    else
+      return 'Error, wrong validation token'
+    end
+  end
 
-	def handle_messages
+  def handle_messages
     params["entry"].each do |entry|
       entry["messaging"].each do |messaging|
         sender_id = messaging["sender"]["id"]
