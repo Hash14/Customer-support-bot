@@ -20,11 +20,11 @@ class MessagesController < ApplicationController
   end
 
 	def send_message(recipient, text)
-    keywords = {
-      welcomes: ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
+    keywords = { 
       jobs: ["job", "opening" , "vacancy" , "vacancies", "jobs"],
       abouts: ["product", "project", "app", "mobile", "idea", "ruby", "rails"],
       supports: ["support" , "talk", "support", "live"],
+      welcomes: ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
       company: ["about", "hash14" , "you", "company"],
       byes: ["bye" , "thanks", "thank you"],
       numbers: ["1","2","3","4","5","6","7","8","9","0"]
