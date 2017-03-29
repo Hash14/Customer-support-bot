@@ -1,6 +1,4 @@
 class MessagesController < ApplicationController
-	
-	PAT = 'EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD'
 
 	def handle_verification
 	  if params['hub.verify_token'] == 'my_voice_is_my_password_verify_guru'
@@ -21,9 +19,7 @@ class MessagesController < ApplicationController
     render json: {success: true}
   end
 
-	def send_message(token, recipient, text)
-  # """Send the message text to recipient with id recipient.
-  # """
+	def send_message
     keywords = {
       welcomes: ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ],
       jobs: ["job", "opening" , "vacancy" , "vacancies", "jobs"],
@@ -53,41 +49,24 @@ class MessagesController < ApplicationController
         break
       end
     end
-    # if check_values_in_array(jobs, text)
-    #   reply = "send your resume to magesh@hash14.com"
-    # elsif abouts.any? { |about| text.downcase.include?(about) }
-    #   reply = "can you send details to sales@hash14.com"
-    # elsif supports.any? { |support| text.downcase.include?(support) } 
-    #   reply = "can you give as ur name and phone no"
-    # elsif welcomes.any? { |welcome| text.downcase.include?(welcome) }
-    #   reply = "hey, how can i help you ?"
-    # elsif byes.any? { |bye| text.downcase.include?(bye) }
-    #   reply = "bye, have a nice day"
-    # elsif company.any? {|comp| text.downcase.include?(comp)}
-    #   reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level. vist http://www.hash14.com"  
-    # elsif numbers.any? {|number| text.downcase.include?(number)} 
-    #   reply = "Thankyou , we will get back to you soon"
-    # else
-    #   reply = "sorry i can't understand you :-(" 
-    # end
-    puts "~"*100
-    puts reply
+    post_to_facebook(recipient, reply)
+  end
+
+  def post_to_facebook(recipient, reply)
     body = {
      recipient: {
        id: recipient
      },
      message: {
-       text: reply
+       text: (reply.present? ? reply : "sorry i can't understand you :-(" )
      }
     }.to_json
-    puts body
+
     response = HTTParty.post(
      'https://graph.facebook.com/v2.6/me/messages?access_token=EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD',
      body: body,
      headers: { 'Content-Type' => 'application/json' }
     )
-    puts body
-    puts response.inspect
 	end
 
   def check_values_in_array(keyword_hash, text)
