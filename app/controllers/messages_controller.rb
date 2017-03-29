@@ -28,37 +28,22 @@ class MessagesController < ApplicationController
       send_message(PAT, sender_id , text)
     end
   end
-  # for sender, message in messaging_events(payload)
-  #   puts sender 
-  #   puts message
-  #   send_message(PAT, sender, message)
 	render json: {success: true}
-  end
-
-
-  def messaging_events(payload)
-  # """Generate tuples of (sender_id, message_text) from the
-  # provided payload.
-  # """
-  #data = json.loads(payload)
-  #messaging_events = data["entry"][0]["messaging"]
-  # for event in messaging_events
-  #   if "message" in event and "text" in event["message"]
-  #     yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
-  #   else
-  #     yield event["sender"]["id"], "I can't echo this"
-  #   end
   end
 
 	def send_message(token, recipient, text)
   # """Send the message text to recipient with id recipient.
   # """
+  job = ["hai" ,"hello" , "hi", "hey"]
+    if job.include? text
+      reply = "hey how can i help you ?"
+    end
     body = {
      recipient: {
        id: recipient
      },
      message: {
-       text: text
+       text: reply
      }
     }.to_json
     response = HTTParty.post(
@@ -67,8 +52,5 @@ class MessagesController < ApplicationController
      headers: { 'Content-Type' => 'application/json' }
     )
      puts response.inspect
-  	# if r.status_code != requests.codes.ok
-   #  	puts r.text
-  	# end
 	end
 end
