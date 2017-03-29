@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
       entry["messaging"].each do |messaging|
         sender_id = messaging["sender"]["id"]
         text = messaging["message"]["text"]
-        send_message(PAT, sender_id , text)
+        send_message(sender_id , text)
       end
     end
     render json: {success: true}
