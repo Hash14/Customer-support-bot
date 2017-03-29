@@ -33,10 +33,11 @@ class MessagesController < ApplicationController
   supports = ["support" , "talk", "support", "live"]
   company = ["about", "hash14" , "you"]
   byes = ["bye" , "thanks", "thank you"]
+  numbers = ["1","2","3","4","5","6","7","8","9","0"]
     if jobs.any? { |job| text.downcase.include?(job) }
       reply = "send your resume to magesh@hash14.com"
     elsif abouts.any? { |about| text.downcase.include?(about) }
-      reply = "can you details to sales@hash14.com"
+      reply = "can you send details to sales@hash14.com"
     elsif supports.any? { |support| text.downcase.include?(support) } 
       reply = "can you give as ur name and phone no"
     elsif welcomes.any? { |welcome| text.downcase.include?(welcome) }
@@ -44,7 +45,10 @@ class MessagesController < ApplicationController
     elsif byes.any? { |bye| text.downcase.include?(bye) }
       reply = "bye, have a nice day"
     elsif company.any? {|comp| text.downcase.include? (comp)}
-      reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level.We specialize in Ruby based web development. With more than six years of experience in this industry we are confident that we can improve your productivity and consequently, your profitability. Our clients come to us for repeat work because they value our work and our reliability as a service provider."     
+      reply = "We are a bunch of passionated and quality obsessed individuals who love getting their hands dirty playing with cutting edge technologies and providing solutions to challenging problems. We create, advise, and develop technology for startups and SME's. We help build your dreams on cloud, projecting the brand to a global level.We specialize in Ruby based web development. With more than six years of experience in this industry we are confident that we can improve your productivity and consequently, your profitability. Our clients come to us for repeat work because they value our work and our reliability as a service provider. 
+                vist: http://www.hash14.com"  
+    elsif numbers.any? {|number| text.downcase,include? (number)} 
+      reply = "Thankyou , we will get back to you soon"
     else
       reply = "sorry i can't understand you :-(" 
     end
@@ -54,12 +58,7 @@ class MessagesController < ApplicationController
      },
      message: {
        text: reply
-     },
-    attachment:{
-      title: "test",
-      url: "https://facebook.com/",
-      type: "fallback",
-    }
+     }
     }.to_json
     response = HTTParty.post(
      'https://graph.facebook.com/v2.6/me/messages?access_token=EAAUq9k26EawBAMJqvdqDuURTWC6hKgxIBbaUm5ZCZBZAq7yeJIG0ZBU59hCcSziFQBYjsprTiUJ5MaJKA5jF75ngI3ZChwhkhQv4qkZCyfPIZClsYQ0Yf11p7md02rpqoOZB3FFAiFUiEHZCZCELHTZBDeBS2oTZCke40n0KTxE1FJubyQZDZD',
