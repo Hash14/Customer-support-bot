@@ -50,7 +50,7 @@ class MessagesController < ApplicationController
       if check_values_in_array(keyword_hash, text)
         reply = responses[keyword_hash.first]
         puts reply
-        return reply
+        break
       end
     end
     # if check_values_in_array(jobs, text)
