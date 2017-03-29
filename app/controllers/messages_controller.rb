@@ -28,11 +28,11 @@ class MessagesController < ApplicationController
   # """Send the message text to recipient with id recipient.
   # """
   welcome = ["hai" ,"hello" , "hi", "hey" , "morning" , "afternoon", "morn" ]
-  job = ["job", "opening" , "vacancy" , "vacancies", "jobs"]
+  jobs = ["job", "opening" , "vacancy" , "vacancies", "jobs"]
   about = ["product", "project", "app", "mobile", "idea", "ruby", "rails"]
   support = ["support" , "talk", "support", "live"]
   bye = ["bye" , "thanks", "thank you"]
-    if job.include? text.downcase 
+    if jobs.any? { |job| text.downcase.includes?(job) }
       reply = "send your resume to magesh@hash14.com"
     elsif about.include? text.downcase
       reply = "can you details to sales@hash14.com"
